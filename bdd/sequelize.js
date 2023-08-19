@@ -11,7 +11,7 @@ const sequelize = new Sequelize ('goldenrolloffilm', 'root', '',{
 
 sequelize.authenticate()
     .then(() => console.log('Connexion Base de Données établie.'))
-    .catch(error => console.log('Connexion Base de Données impossible ${error}'))
+    .catch(error => console.log(`Connexion Base de Données impossible ${error}`))
  
     
     const defineFilmModel = require('../models/filmModelDefinition')
@@ -47,11 +47,12 @@ UserModel.hasMany(FilmModel, {
 
 ContientModel.belongsTo(GenreModel);
 GenreModel.hasMany(ContientModel)
-FilmModel.hasMany(ContientModel, {
-    foreignKey:{
-        allowNull:false
-    }
-});
+// ContientModel.belongsTo(FilmModel);
+// FilmModel.hasMany(ContientModel, {
+//     foreignKey:{
+//         allowNull:false
+//     }
+// });
 
 
 ReviewModel.belongsTo(FilmModel);

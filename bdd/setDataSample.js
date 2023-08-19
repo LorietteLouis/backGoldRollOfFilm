@@ -16,16 +16,7 @@ module.exports = (FilmModel, UserModel, RoleModel, ReviewModel, GenreModel, Cont
     })
     
     
-    Promise.allSettled(genrePromises).then(()=>{
-        const ContientPromises = []
-        return ContientPromises.push(
-            then((genre, film)=> {
-        return ContientModel.create({
-            FilmId: film.id,
-            GenreId: genre.id
-        })
-    }))
-    })
+    
 
     
     Promise.all(rolePromises).then(()=> {
@@ -87,7 +78,8 @@ module.exports = (FilmModel, UserModel, RoleModel, ReviewModel, GenreModel, Cont
                             years:mock.years,
                             release_date:mock.release_date,
                             synopsis:mock.synopsis,
-                            UserId:2,     
+                            UserId:2,
+                              
                         });
                     })
                     Promise.all(filmPromises).then(()=>{
@@ -106,6 +98,16 @@ module.exports = (FilmModel, UserModel, RoleModel, ReviewModel, GenreModel, Cont
                     })
                 })
             })
-    
-
-}
+            
+            
+            Promise.allSettled(genrePromises).then(()=>{
+                const ContientPromises = []
+                return ContientPromises.push(
+                    then((genre, film)=> {
+                return ContientModel.create({
+                    FilmId: film.id,
+                    GenreId: genre.id
+                })
+            }))
+            })
+        }
