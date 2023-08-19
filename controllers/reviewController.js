@@ -15,7 +15,7 @@ exports.findAllReviews = (req, res) => {
 exports.createReview = (req, res) => {
     UserModel.findOne({ where: { username: req.username } })
         .then(user => {
-            return ReviewModel.create({ ...req.body, UserId: user.id, CoworkingId: req.params.id })
+            return ReviewModel.create({ ...req.body, UserId: user.id, FilmId: req.params.id })
                 .then(result => {
                     res.json({ message: `création d'un avis`, data: result })
                 })

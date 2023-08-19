@@ -96,18 +96,14 @@ module.exports = (FilmModel, UserModel, RoleModel, ReviewModel, GenreModel, Cont
                             UserId: 4
                         })
                     })
+                    Promise.all(filmPromises).then(()=>{
+                        ContientModel.create({
+                            FilmId:1,
+                            GenreId:6
+                        })
+                    })
                 })
             })
             
             
-            Promise.allSettled(genrePromises).then(()=>{
-                const ContientPromises = []
-                return ContientPromises.push(
-                    then((genre, film)=> {
-                return ContientModel.create({
-                    FilmId: film.id,
-                    GenreId: genre.id
-                })
-            }))
-            })
-        }
+}

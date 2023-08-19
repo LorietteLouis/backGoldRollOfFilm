@@ -13,7 +13,7 @@ exports.findAllFilms = (req, res) => {
 }
 
 exports.findAllFilmsWithRawSql = (req, res) => {
-    sequelize.query("SELECT title_vf, rating FROM `film` LEFT JOIN `reviews` ON `film`.`id` = `reviews` = ``reviews`.`filmId`", {type:QueryTypes.SELECT})
+    sequelize.query("SELECT title_vf, rating FROM `film` LEFT JOIN `reviews` ON `film`.`id` = `reviews` = ``reviews`.`filmId`", {type:QueryType.SELECT})
     .then(result =>{
         res.json({message:'La liste des films a bien été récupérée.', data: result})
     })
@@ -106,7 +106,7 @@ exports.findAllFilmsByReview = (req, res) => {
 exports.findAllFilmsByReviewSQL = (req, res) => {
     return sequelize.query('SELECT name, rating FROM `films` LEFT JOIN `reviews` ON `films`.`id` = `reviews`.`FilmId`',
         {
-            type: QueryTypes.SELECT
+            type: QueryType.SELECT
         }
     )
         .then(films => {
@@ -122,7 +122,7 @@ exports.findAllFilmsByReviewSQL = (req, res) => {
 exports.findAllFilmsByCountrySQL = (req, res) =>{
     return sequelize.query('SELECT name, rating FROM `films` LEFT JOIN `pays` ON `films`.`id` = `pays`.`FilmId`',
     {
-        type: QueryTypes.SELECT
+        type: QueryType.SELECT
     }
 )
     .then(films =>{

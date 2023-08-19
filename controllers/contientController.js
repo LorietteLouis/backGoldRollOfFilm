@@ -36,9 +36,9 @@ exports.updateContient = (req, res) => {
 }
 
 exports.createContient = (req, res) => {
-    FilmModel.findOne({ where: { id:GenreId} })
+    GenreModel.findOne({ where: { id:GenreId} })
         .then(genre => {
-            return ContientModel.create({ ...req.body, GenreId: genre.id, FilmId: req.params.id })
+            return ContientModel.create({ ...req.body, GenreId: genre.id})
                 .then(result => {
                     res.json({ message: `création d'une affiche`, data: result })
                 })

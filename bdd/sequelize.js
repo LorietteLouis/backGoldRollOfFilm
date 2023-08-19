@@ -47,12 +47,12 @@ UserModel.hasMany(FilmModel, {
 
 ContientModel.belongsTo(GenreModel);
 GenreModel.hasMany(ContientModel)
-// ContientModel.belongsTo(FilmModel);
-// FilmModel.hasMany(ContientModel, {
-//     foreignKey:{
-//         allowNull:false
-//     }
-// });
+ContientModel.belongsTo(FilmModel);
+FilmModel.hasMany(ContientModel, {
+    foreignKey:{
+        allowNull:false
+    }
+});
 
 
 ReviewModel.belongsTo(FilmModel);
